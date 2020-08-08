@@ -2,7 +2,13 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+	ofxGuiEnableHiResDisplay();
+
 	stepper.setup();
+
+	gui.setup();
+	gui.add(stepper.x_offset.set("x", 150, -175, 175));
+	gui.add(stepper.y_offset.set("y", -90, -175, 175));
 }
 
 //--------------------------------------------------------------
@@ -13,6 +19,7 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 	ofBackground(ofColor::antiqueWhite);
+	gui.draw();
 	ofTranslate(ofGetWidth() / 2., ofGetHeight() / 2.);
 	stepper.draw();
 }

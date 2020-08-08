@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxGui.h"
 #include "stepper.h"
 
 class ofApp : public ofBaseApp{
@@ -24,5 +25,5 @@ class ofApp : public ofBaseApp{
 
 	private:
 		Stepper stepper;
-
+		ofxPanel gui;
 };

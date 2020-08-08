@@ -11,9 +11,12 @@ class Stepper {
 	const float spacing = 43;
 
 	public:
+		ofParameter<float> x_offset;
+		ofParameter<float> y_offset;
+
 		void setup() {
 			font.load(FONT, FONT_SIZE);
-			coil_a_active = coil_b_active = coil_direction = false;
+			coil_a_active = coil_b_active = coil_direction = true;
 
 			setup_coil();
 			setup_arrow();
@@ -130,13 +133,15 @@ class Stepper {
 				ofFill();
 				ofPushMatrix();
 				if (coil_direction) {
-					ofTranslate(spacing * 2, spacing);
-					ofTriangle(0, 0, spacing / 4., spacing, -spacing / 4., spacing);
-				} else {
 					ofScale(1, -1);
-					ofTranslate(spacing * 2, -spacing * 3.);
-					ofTriangle(0, 0, spacing / 4., spacing, -spacing / 4., spacing);
 				}
+				ofTranslate(-spacing / 2., spacing / 4.);
+				ofRotateDeg(-60);
+				ofTranslate(-22.75, 0);
+				if (coil_direction) {
+					ofTranslate(150, -90);
+				}
+				ofDrawTriangle(0, 0, spacing / 4., spacing, -spacing / 4., spacing);
 				ofPopMatrix();
 				ofPopStyle();
 			}
@@ -148,7 +153,6 @@ class Stepper {
 				arrow.setFilled(false);
 				arrow.setStrokeWidth(25);
 				arrow.setColor(ofColor::black);
-				arrow.moveTo(spacing * 2, padding);
-				arrow.bezierTo(position, padding, position, step * 4. - padding, spacing * 2, step * 4. - padding);
+				arrow.arc(-spacing / 2., spacing * 2., spacing, spacing, -60, 60);
 			}
 };
