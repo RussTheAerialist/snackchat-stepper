@@ -4,6 +4,8 @@
 #include "ofxGui.h"
 #include "stepper.h"
 
+const int number_points = 5;
+
 class ofApp : public ofBaseApp{
 
 	public:
@@ -25,5 +27,18 @@ class ofApp : public ofBaseApp{
 
 	private:
 		Stepper stepper;
+		ofTrueTypeFont font;
 		ofxPanel gui;
+		int step_show;
+
+		void next_step();
+		void draw_text();
+
+		string points[number_points] = {
+			"low cost",
+			"precise",
+			"rugged",
+			"reliable",
+			"high torque",
+		};
 };
